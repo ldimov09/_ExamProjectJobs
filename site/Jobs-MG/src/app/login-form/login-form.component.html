@@ -1,0 +1,20 @@
+<form [formGroup]="form">
+    <div class="form-group">
+        <label for="userEmail">Email</label>
+        <input formControlName="userEmail" type="text" id="userEmail" class="form-control" placeholder="Email">
+        <div *ngIf="userEmail?.touched && userEmail?.invalid" class="alert alert-danger">
+            <div *ngIf="userEmail?.errors?.['required']">Email is required.</div>
+            <div *ngIf="userEmail?.errors?.['email']">Invalid email.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="userPassword">Password</label>
+        <input formControlName="userPassword" type="password" id="userPassword" class="form-control"
+            placeholder="Password">
+        <div *ngIf="userPassword?.touched && userPassword?.invalid" class="alert alert-danger">
+            <div *ngIf="userPassword?.errors?.['required']">Password is required.</div>
+
+        </div>
+    </div>
+    <button [disabled]="!form.valid" class="btn btn-primary">Login</button>
+</form>

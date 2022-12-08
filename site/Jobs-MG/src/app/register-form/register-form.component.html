@@ -1,0 +1,38 @@
+<form [formGroup]="form" (ngSubmit)="handleSubmit()">
+    <div class="form-group">
+        <label for="userEmail">Email</label>
+        <input formControlName="email" type="text" id="userEmail" class="form-control" placeholder="Email">
+        <div *ngIf="userEmail?.touched && userEmail?.invalid" class="alert alert-danger">
+            <div *ngIf="userEmail?.errors?.['required']">Email is required.</div>
+            <div *ngIf="userEmail?.errors?.['email']">Invalid email.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="userPassword">Password</label>
+        <input formControlName="password" type="password" id="userPassword" class="form-control"
+            placeholder="Password">
+        <div *ngIf="userPassword?.touched && userPassword?.invalid" class="alert alert-danger">
+            <div *ngIf="userPassword?.errors?.['required']">Password is required.</div>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="userRepass">Repeat Password</label>
+        <input formControlName="userRepass" type="password" id="userRepass" class="form-control"
+            placeholder="Repeat Password">
+        <div *ngIf="userRepass?.touched && userRepass?.invalid" class="alert alert-danger">
+            <div *ngIf="userRepass?.errors?.['required']">You must repeat the password.</div>
+        </div>
+        <div *ngIf="form.invalid && form.errors?.['passwordShouldMatch'] && userRepass?.valid" class="alert alert-danger">Passwords do not match.</div>
+    </div>
+    <div class="form-group">
+        <label for="userDisplayName">Display Name</label>
+        <input formControlName="name" type="text" id="userDisplayName" class="form-control"
+            placeholder="Your name">
+        <div *ngIf="userDisplayName?.touched && userDisplayName?.invalid" class="alert alert-danger">
+            <div *ngIf="userDisplayName?.errors?.['required']">Your name is required.</div>
+        </div>
+    </div>
+
+    <button [disabled]="form.invalid" class="btn btn-primary">Register</button>
+</form>
