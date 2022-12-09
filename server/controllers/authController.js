@@ -5,9 +5,9 @@ const authContoller = require('express').Router();
 authContoller.post('/register', async function (req, res) {
     console.log(req.body);
     try{
-        const token = await register(req.body.email, req.body.name, req.body.password, req.body.imageIndex, req.body.gender);
+        const token = await register(req.body.email, req.body.displayName, req.body.password, req.body.imageIndex, req.body.gender);
         res.send(JSON.stringify({
-            token: token,
+            result: token,
             success: true,
         }));
     } catch (err) {
@@ -26,5 +26,6 @@ authContoller.get('/users', async (req, res) => {
         result: allUsers,
     });
 })
+
 
 module.exports = authContoller;

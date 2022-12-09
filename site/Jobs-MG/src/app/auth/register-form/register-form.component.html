@@ -36,3 +36,10 @@
 
     <button [disabled]="form.invalid" class="btn btn-primary">Register</button>
 </form>
+
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let user of users">
+        <button class="btn btn-danger btn-sm" (click)="handleDeleteUser(user)">delete</button>
+        {{user.displayName}}
+    </li>
+</ul>

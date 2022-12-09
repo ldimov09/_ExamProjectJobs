@@ -1,0 +1,51 @@
+<form [formGroup]="form" (ngSubmit)="createJob(form)">
+    <div class="form-group">
+        <label for="name">Job name</label>
+        <input 
+            class="form-control" 
+            type="text" id="name" 
+            placeholder="Job offer name"
+            formControlName="name">
+        <div *ngIf="name?.touched && name?.invalid" class="alert alert-danger">
+            <div *ngIf="name?.errors?.['required']">Job name is required.</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Job Description</label>
+        <textarea 
+            id="description" 
+            cols="30" 
+            rows="3" 
+            class="form-control" 
+            placeholder="Job description"
+            formControlName="description">
+        </textarea>
+        <div *ngIf="description?.touched && description?.invalid" class="alert alert-danger">
+            <div *ngIf="description?.errors?.['required']">Job description is required.</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="salary">Salary</label>
+        <input 
+            class="form-control" 
+            type="number" 
+            id="salary" 
+            placeholder="Salary"
+            formControlName="salary">
+        <div *ngIf="salary?.touched && salary?.invalid" class="alert alert-danger">
+            <div *ngIf="salary?.errors?.['required']">Job salary is required.</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="owner">Owner(Temp)</label><br>
+        <select id="owner" formControlName="owner">
+            <option value="">Select</option>
+            <option *ngFor="let user of users" [ngValue]="user._id">{{user.displayName}}</option>
+        </select>
+    </div>
+
+    <button class="btn btn-primary" [disabled]="form.invalid">Create</button>
+</form>
