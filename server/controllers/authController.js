@@ -28,4 +28,5 @@ authContoller.get('/users', async (req, res) => {
 })
 
 
+
 module.exports = authContoller;

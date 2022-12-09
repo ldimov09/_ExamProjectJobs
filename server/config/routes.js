@@ -1,7 +1,7 @@
 const jobController = require("../controllers/jobController");
 const authController = require("../controllers/authController");
 const express = require("express");
-//const bodyParser = require("body-parser");
+//onst bodyParser = require("body-parser");
 let cors = require('cors');
 
 module.exports = function (app) {

@@ -41,7 +41,7 @@
 
     <div class="form-group">
         <label for="owner">Owner(Temp)</label><br>
-        <select id="owner" formControlName="owner">
+        <select id="owner"  class="form-select" formControlName="owner">
             <option value="">Select</option>
             <option *ngFor="let user of users" [ngValue]="user._id">{{user.displayName}}</option>
         </select>

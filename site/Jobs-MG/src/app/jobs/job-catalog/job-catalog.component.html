@@ -1,0 +1,16 @@
+<div class="form-group">
+    <label for="owner">Logged user ( Temp )</label><br>
+    <select id="owner" class="form-select" #owner (change)="setLoggedUser(owner.value)">
+        <option value="">Select</option>
+        <option *ngFor="let user of users" [attr.value]="user._id">{{user.displayName}}</option>
+    </select>
+</div>
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let job of jobs">
+        <button type="button" [disabled]="checkReaction(job, 'like')" class="btn btn-primary" (click)="handleReaction(job, owner.value, 'like')">Like</button> &nbsp;
+        <button type="button" [disabled]="checkReaction(job, 'neutral')" class="btn btn-secondary" (click)="handleReaction(job, owner.value, 'neutral')">Neutral</button> &nbsp;
+        <button type="button" [disabled]="checkReaction(job, 'dislike')" class="btn btn-danger" (click)="handleReaction(job, owner.value, 'dislike')">Dislike</button> &nbsp;
+
+        {{job.name}}
+    </li>
+</ul>

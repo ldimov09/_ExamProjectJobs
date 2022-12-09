@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PasswordValidators } from 'src/app/auth/register-form/password.validators';
 import { UserService } from 'src/app/auth/user.service';
+import { IJob } from 'src/app/interfaces/job.interface';
 import { IUser } from 'src/app/interfaces/user.interface';
+import { JobService } from '../job.service';
 
 @Component({
   selector: 'app-create-job-form',
@@ -11,9 +13,10 @@ import { IUser } from 'src/app/interfaces/user.interface';
 })
 export class CreateJobFormComponent implements OnInit {
 
-  users! : IUser[]
+  users! : IUser[];
+  jobs! : IJob[];
 
-  constructor(private service: UserService) { }
+  constructor(private service: UserService, private jobService: JobService) { }
 
   ngOnInit(): void {
     this.service.getUsers().subscribe({
@@ -45,7 +48,25 @@ export class CreateJobFormComponent implements OnInit {
   }
 
   createJob(form: FormGroup){
-    console.log(form.value);
+    let formValue:IJob = {
+      name: this.form.value.name!,
+      description: this.form.value.description!,
+      salary: form.value.salary!,
+      owner: form.value.owner,
+    };
+    console.log(formValue);
+    this.jobService.createJob(formValue)
+      .subscribe({
+        next: (response) => {
+          console.log(response);
+        },
+        error: () => {
+
+        }
+      })
+
   }
+
+
 
 }
