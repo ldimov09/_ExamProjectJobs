@@ -12,6 +12,11 @@ interface ICreateJobResponse {
   success: boolean;
 }
 
+interface IGetJobResponse {
+  result: IJob;
+  success: boolean;
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +30,13 @@ export class JobService {
 
   getAllJobs() {
     return this.http.get<IGetAllJobsResponse>(this.url);
+  }
+  getJob(id: string) {
+    return this.http.get<IGetJobResponse>(this.url + 'details/' +  id);
+  }
+
+  updateJob(job: IJob, jobId: string) {
+    return this.http.put<IGetJobResponse>(this.url + 'edit/' + jobId, job);
   }
 
   createJob(job: IJob) {

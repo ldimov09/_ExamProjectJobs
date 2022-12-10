@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { CreateJobFormComponent } from './create-job-form/create-job-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JobCatalogComponent } from './job-catalog/job-catalog.component';
+import { EditJobFormComponent } from './edit-job-form/edit-job-form.component';
 
 
 
 @NgModule({
   declarations: [
     CreateJobFormComponent,
-    JobCatalogComponent
+    JobCatalogComponent,
+    EditJobFormComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { JobCatalogComponent } from './job-catalog/job-catalog.component';
   ],
   exports: [
     CreateJobFormComponent,
-    JobCatalogComponent
+    EditJobFormComponent,
+    JobCatalogComponent,
   ]
 })
 export class JobsModule { }

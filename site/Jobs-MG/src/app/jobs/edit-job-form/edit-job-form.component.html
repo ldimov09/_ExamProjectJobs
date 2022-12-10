@@ -1,0 +1,47 @@
+<form [formGroup]="form" (ngSubmit)="updateJob(form)">
+    <div class="form-group">
+        <label for="name">Job name</label>
+        <input
+            class="form-control"
+            type="text"
+            id="name"
+            placeholder="Job Offer Name"
+            formControlName="name">
+        <div *ngIf="name?.touched && name?.invalid" class="alert alert-danger">
+            <div *ngIf="name?.errors?.['required']">Job name is required</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+            class="form-control"
+            type="text"
+            id="description"
+            placeholder="Job Offer description"
+            formControlName="description">
+        </textarea>
+        <div *ngIf="description?.touched && description?.invalid" class="alert alert-danger">
+            <div *ngIf="description?.errors?.['required']">Job description is required</div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="salary">Job salary</label>
+        <input
+            class="form-control"
+            type="text"
+            id="salary"
+            placeholder="Job Offer salary"
+            formControlName="salary">
+        <div *ngIf="salary?.touched && salary?.invalid" class="alert alert-danger">
+            <div *ngIf="salary?.errors?.['required']">Job salary is required</div>
+        </div>
+    </div>
+
+
+    <button class="btn btn-primary" [disabled]="form.invalid">Update</button>
+
+
+</form>

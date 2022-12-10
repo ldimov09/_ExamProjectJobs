@@ -3,7 +3,7 @@ export interface IJob {
     name: string;
     description: string;
     salary: number;
-    owner: string;  
+    owner?: string;  
     likes?: string[];
     dislikes?: string[];
 }

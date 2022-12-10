@@ -7,13 +7,14 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { UserService } from './auth/user.service';
 import { JobsModule } from './jobs/jobs.module';
+//import { JobsModule_1 as JobsModule } from "./jobs/jobs.module";
 
 @NgModule({
     declarations: [
         AppComponent,
     ],
     providers: [
-      UserService
+        UserService
     ],
     bootstrap: [AppComponent],
     imports: [

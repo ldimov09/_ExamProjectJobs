@@ -1,11 +1,14 @@
 const Jobs = require("../models/jobs");
 const Users = require("../models/users");
-const { getById, getAll, createJob, updateJobReaction, updateUserApplications, updateUserFavorite, deleteById } = require("../services/jobService");
+const { getById, getAll, createJob, updateJobReaction, updateUserApplications, updateById, updateUserFavorite, deleteById } = require("../services/jobService");
 const jobController = require('express').Router();
 
 jobController.get('/jobs/details/:id', async (req, res) => {
 
-    res.send(await getById(req.params.id));
+    res.send({
+        result: await getById(req.params.id),
+        sucsess: true
+    });
 })
 
 jobController.get('/jobs', async (req, res) => {
@@ -71,5 +74,10 @@ jobController.delete('/jobs/:id', async (req,res) => {
     const id = req.params.id;
     const result = await deleteById(id);
 })
+jobController.put('/jobs/edit/:id', async (req, res) => {
+    const id = req.params.id;
+    const result = await updateById(id, req.body);
+})
+
 
 module.exports = jobController;

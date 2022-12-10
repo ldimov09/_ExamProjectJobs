@@ -101,6 +101,15 @@ async function deleteById(id) {
     return await Jobs.findByIdAndRemove(id);
 }
 
+async function updateById(id, job) {
+    const existing = await Jobs.findById(id);
+    existing.name = job.name;
+    existing.description = job.description;
+    existing.salary = job.salary;
+
+    return await existing.save();
+}
+
 module.exports = {
     getById: getById,
     getAll: getAll,
@@ -108,5 +117,6 @@ module.exports = {
     updateJobReaction: updateJobReaction,
     updateUserApplications: updateUserApplications,
     updateUserFavorite: updateUserFavorite,
-    deleteById: deleteById
+    deleteById: deleteById,
+    updateById: updateById,
 }
