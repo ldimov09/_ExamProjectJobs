@@ -1,4 +1,4 @@
-const { register, getAllUsers } = require('../services/userService');
+const { register, getAllUsers, getUserById } = require('../services/userService');
 const authContoller = require('express').Router();
 
 
@@ -20,12 +20,22 @@ authContoller.post('/register', async function (req, res) {
 });
 
 authContoller.get('/users', async (req, res) => {
+
     const allUsers = await getAllUsers();
     res.send({
         success: true,
         result: allUsers,
     });
 })
+
+/*
+authContoller.get('/users/:id', async (req, res) => {
+
+    const user = await getUserById(req.params.id);
+    res.send({success: true, result: user});
+})
+
+*/
 
 
 

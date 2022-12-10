@@ -43,7 +43,12 @@ async function getAllUsers() {
     return result;
 }
 
+async function getUserById(id) {
+    return User.find(id).lean();
+}
+
 module.exports = {
     register: register,
     getAllUsers: getAllUsers,
+    getUserById: getUserById,
 }

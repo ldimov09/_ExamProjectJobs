@@ -34,4 +34,15 @@ export class JobService {
   updateJobReactions(reactionUpdate: any) {
     return this.http.put(this.url + 'react', reactionUpdate);
   }
+
+  updateUserApplications(applicationUpdate: any){
+    return this.http.put(this.url + 'apply', applicationUpdate);
+  }
+  updateUserFavorites(favoritesUpdate: any){
+    return this.http.put(this.url + 'favor', favoritesUpdate);
+  }
+
+  deleteJob(jobId?: string) {
+    return this.http.delete(this.url + jobId);
+  }
 }

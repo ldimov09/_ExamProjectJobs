@@ -5,4 +5,6 @@ export interface IUser {
     email: string;
     imageIndex: string;
     gender: string;
+    applications?: string[];
+    favorites?: string[];
 }

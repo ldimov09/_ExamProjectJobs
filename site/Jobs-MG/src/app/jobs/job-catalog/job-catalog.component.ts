@@ -15,7 +15,7 @@ export class JobCatalogComponent implements OnInit {
 
   users! :IUser[];
   jobs! :IJob[];
-  ownerId!: string;
+  ownerId: string = "";
 
   constructor(private service: UserService, private jobService: JobService) { }
 
@@ -31,10 +31,6 @@ export class JobCatalogComponent implements OnInit {
     })
   }
 
-  setLoggedUser(ownerId: string) {
-    this.ownerId = ownerId;
-  }
-
   checkReaction(job: IJob, reaction: string) {
     if (reaction === 'like' && job.likes?.indexOf(this.ownerId) !== -1) {
       return true;
@@ -46,8 +42,27 @@ export class JobCatalogComponent implements OnInit {
     return false;
   }
 
+  checkApplication(job: IJob, applyButton: boolean){
+    const filteredUsers = this.users.filter(el => el._id == this.ownerId);
+    if(filteredUsers.length){
+      if(filteredUsers[0].applications?.indexOf(job._id!) !== -1 && applyButton)
+        return true;
+      if(filteredUsers[0].applications?.indexOf(job._id!) === -1 && !applyButton)
+        return true;
+    }
+    return false;
+  }
 
-
+  checkFavorite(job: IJob, favoriteButton: boolean){
+    const filteredUser = this.users.filter(el => el._id === this.ownerId);;
+    if(filteredUser.length) {
+      if(filteredUser[0].favorites?.indexOf(job._id!) !== -1 && favoriteButton)
+        return true;
+      if(filteredUser[0].favorites?.indexOf(job._id!) === -1 && !favoriteButton) 
+        return true;
+    }
+    return false;
+  }
 
   getAllJobs() {
     this.jobService.getAllJobs().subscribe({
@@ -61,9 +76,38 @@ export class JobCatalogComponent implements OnInit {
     });
   }
 
+  getAllUsers(){
+    this.service.getUsers().subscribe({
+      next: (response) => {
+        this.users = response.result;
+      },
+      error: (error) => {  
+      }
+    })  
+  }
+
+
+  deleteJob(jobId?: string) {
+    console.log("deleteJob", jobId);
+    if(!confirm('Are you sure?')){
+      return;
+    }
+    this.jobService.deleteJob(jobId).subscribe(
+      {
+        next: (response) => {
+          this.getAllJobs();
+        },
+        error: (error) => {
+
+        }
+
+      }
+    );
+  }
+
   handleReaction(job: IJob, ownerId: string, reaction: string) {
     const payload = {
-      ownerId: ownerId,
+      userId: ownerId,
       reaction: reaction,
       jobId: job._id,
     }
@@ -71,12 +115,52 @@ export class JobCatalogComponent implements OnInit {
     this.jobService.updateJobReactions(payload)
       .subscribe({
         next: (response) => {
-          console.log(this.getAllJobs());
+          this.getAllJobs();
         },
         error: (error) => {
 
         }
       });
   }
+
+  handleApplication(job: IJob, ownerId: string, action: boolean) {
+    const payload = {
+      userId: ownerId,
+      action: action,
+      jobId: job._id,
+    }
+
+    this.jobService.updateUserApplications(payload).subscribe(
+      {
+        next: (response) => {
+          this.getAllUsers();
+        },
+        error: (error) => {
+
+        }
+      }
+    );
+
+  }
+
+  handleFavorite(job: IJob, ownerId: string, action: boolean) {
+    const payload = {
+      userId: ownerId,
+      action: action,
+      jobId: job._id,
+    }
+    this.jobService.updateUserFavorites(payload).subscribe(
+      {
+        next: (response) => {
+          this.getAllUsers();
+        },
+        error: (error) => {
+
+        }
+      }
+    )
+  }
+
+
 
 }

@@ -12,6 +12,12 @@ interface ICreateUsersResponse{
   error: string;
 }
 
+/*interface IGetUserResponse {
+  success: boolean;
+  result: IUser;
+  error: string;
+}*/
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,6 +30,10 @@ export class UserService {
   getUsers(){
     return this.http.get<IGetUsersResponse>(this.url + 'users');
   }
+
+  /*getUserById(id: string){
+    return this.http.get<IGetUserResponse>(this.url + 'users/' + id)
+  }*/
 
   createUser(user: IUser){
     return this.http.post<ICreateUsersResponse>(this.url + 'register', user);

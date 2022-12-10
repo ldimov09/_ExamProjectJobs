@@ -1,6 +1,6 @@
 const Jobs = require("../models/jobs");
 const Users = require("../models/users");
-const { getById, getAll, createJob, updateJobReaction } = require("../services/jobService");
+const { getById, getAll, createJob, updateJobReaction, updateUserApplications, updateUserFavorite, deleteById } = require("../services/jobService");
 const jobController = require('express').Router();
 
 jobController.get('/jobs/details/:id', async (req, res) => {
@@ -25,7 +25,6 @@ jobController.get('/jobs', async (req, res) => {
 })
 
 jobController.post('/jobs/create', async (req, res) => {
-    console.log(req.body);
     try {
         const result = await createJob(req.body);
         console.log(result);
@@ -42,7 +41,6 @@ jobController.post('/jobs/create', async (req, res) => {
 })
 
 jobController.put('/jobs/react', async (req, res) => {
-    console.log(req.body);
     try{
         const result = await updateJobReaction(req.body);
         console.log('Reuslt like dislike', result);
@@ -56,6 +54,22 @@ jobController.put('/jobs/react', async (req, res) => {
             error: err.message,
         })
     }
+})
+
+jobController.put('/jobs/apply', async (req, res) => {
+
+    res.send(await updateUserApplications(req.body));
+
+})
+
+jobController.put('/jobs/favor', async (req, res) => {
+
+    res.send(await updateUserFavorite(req.body));
+})
+
+jobController.delete('/jobs/:id', async (req,res) => {
+    const id = req.params.id;
+    const result = await deleteById(id);
 })
 
 module.exports = jobController;

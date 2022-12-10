@@ -22,6 +22,7 @@ export class CreateJobFormComponent implements OnInit {
     this.service.getUsers().subscribe({
       next: (response) => {
         this.users = response.result;
+        this.getAllJobs();
       },
       error: (error) => {
 
@@ -32,7 +33,7 @@ export class CreateJobFormComponent implements OnInit {
   form = new FormGroup({
     'name': new FormControl('', [Validators.required]),
     'description': new FormControl('', [Validators.required]),
-    'salary': new FormControl('', [Validators.required]),
+    'salary': new FormControl(0, [Validators.required]),
     'owner': new FormControl('', [Validators.required]),
   });
 
@@ -67,6 +68,22 @@ export class CreateJobFormComponent implements OnInit {
 
   }
 
+  getAllJobs() {
+    this.jobService.getAllJobs().subscribe({
+      next: (response) => {
+        this.jobs = response.result;
+        console.log(this.jobs);
+        this.form.patchValue({
+          name: this.jobs[0].name,
+          description: this.jobs[0].description,
+          salary: this.jobs[0].salary,
+          owner: this.jobs[0].owner,
+        });        
+      },
+      error: (error) => {
 
+      }
+    });
+  }
 
 }

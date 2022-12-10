@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -20,7 +19,6 @@ import { JobsModule } from './jobs/jobs.module';
     imports: [
         BrowserModule,
         AppRoutingModule,
-        FormsModule,
         HttpClientModule,
         AuthModule,
         JobsModule
