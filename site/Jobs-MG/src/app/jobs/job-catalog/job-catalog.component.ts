@@ -20,6 +20,7 @@ export class JobCatalogComponent implements OnInit {
   constructor(private service: UserService, private jobService: JobService) { }
 
   ngOnInit(): void {
+    this.ownerId = this.service.user._id;
     this.service.getUsers().subscribe({
       next: (response) => {
         this.users = response.result;

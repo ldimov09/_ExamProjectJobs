@@ -18,6 +18,7 @@ export class RegisterFormComponent implements OnInit {
   }
 
   getAllUsers() {
+    console.log("tuk");
     this.service.getUsers()
     .subscribe({
       next: (response) =>{

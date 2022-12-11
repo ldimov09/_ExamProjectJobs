@@ -1,0 +1,28 @@
+#hide-button {
+    display: none;
+}
+#nav-menu {
+    display: none;
+}
+input#nav-toggle:checked~label#show-button {
+    display: none !important;
+}
+
+input#nav-toggle:checked~label#hide-button {
+    display: flex !important;
+}
+
+input#nav-toggle:checked~#nav-menu {
+    display: block !important;
+    background-color: #ffffff;
+    text-align: center;
+    width: 100%;
+}
+#home-link{
+    text-decoration: none;
+    color: black;
+    font-size: 2rem;
+}
+nav{
+    background-color: #efefef;
+}

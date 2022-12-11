@@ -7,11 +7,19 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { UserService } from './auth/user.service';
 import { JobsModule } from './jobs/jobs.module';
-//import { JobsModule_1 as JobsModule } from "./jobs/jobs.module";
+import { NavigationComponent } from './navigation/navigation.component';
+import { HomeComponent } from './home/home.component';
+import { RouterModule } from '@angular/router';
+import { LoginFormComponent } from './auth/login-form/login-form.component';
+import { RegisterFormComponent } from './auth/register-form/register-form.component';
+import { JobCatalogComponent } from './jobs/job-catalog/job-catalog.component';
+import { CreateJobFormComponent } from './jobs/create-job-form/create-job-form.component';
 
 @NgModule({
     declarations: [
         AppComponent,
+        NavigationComponent,
+        HomeComponent,
     ],
     providers: [
         UserService
@@ -22,7 +30,15 @@ import { JobsModule } from './jobs/jobs.module';
         AppRoutingModule,
         HttpClientModule,
         AuthModule,
-        JobsModule
+        JobsModule,
+        RouterModule.forRoot([
+            {path:'', component: HomeComponent},
+            {path:'login', component: LoginFormComponent},
+            {path:'register', component: RegisterFormComponent},
+            {path:'catalog', component: JobCatalogComponent},
+            {path:'create', component: CreateJobFormComponent},
+
+        ])
     ]
 })
 export class AppModule { }

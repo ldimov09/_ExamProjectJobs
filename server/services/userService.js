@@ -48,23 +48,23 @@ async function getUserById(id) {
     return User.find(id).lean();
 }
 
-async function login(email, password) {
+async function login({email, password}) {
     const user = await User.findOne({ email }).collation({ locale: 'en', strength: 2 });
     if (!user) {
         throw new Error('Incorrect email or password!');
     }
-
+    
     const hasMatch = await bcrypt.compare(password, user.hashedPassword);
-
+    
     if (!hasMatch) {
         throw new Error('Incorrect email or password!');
     }
-
-    return createSession(user);
+    return await createSession(user);
 }
 
 module.exports = {
     register: register,
     getAllUsers: getAllUsers,
     getUserById: getUserById,
+    login: login,
 }

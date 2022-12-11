@@ -1,10 +1,3 @@
-<div class="form-group">
-    <label for="owner">Logged user ( Temp )</label><br>
-    <select id="owner" class="form-select" [(ngModel)]="ownerId">
-        <option value="">Select</option>
-        <option *ngFor="let user of users" [ngValue]="user._id">{{user.displayName}}</option>
-    </select>
-</div>
 <ul class="list-group">
     <li class="list-group-item" *ngFor="let job of jobs">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-hand-thumbs-up" (click)="handleReaction(job, ownerId, 'like')" *ngIf="checkReaction(job, 'dislike') || checkReaction(job, 'neutral')" viewBox="0 0 16 16">
@@ -66,3 +59,10 @@
 
     </li>
 </ul>
+<div class="form-group" style="opacity: 0.2">
+    <label for="owner">Logged user ( Temp )</label><br>
+    <select id="owner" class="form-select" [(ngModel)]="ownerId">
+        <option value="">Select</option>
+        <option *ngFor="let user of users" [ngValue]="user._id">{{user.displayName}}</option>
+    </select>
+</div>
