@@ -26,6 +26,10 @@ authContoller.get('/users', async (req, res) => {
         success: true,
         result: allUsers,
     });
+});
+
+authContoller.post('/login', async (req, res) => {
+    
 })
 
 /*

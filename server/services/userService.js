@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 
 
-const JST_SECRET = 'tm`dspoksferioh8ueyw45x89x4wbft389yce789bgrnty8c7^%$%*&&^$%^%%&*468932hy432d5j83409f45 5t9o5y845uvhyop4wm';
+const JST_SECRET = 'tm`dspoksferioh8ueyw45x89x4wbft389yce789bgrnty8c7^%$%*&&^$%^%%&*468932hy432d5j83409f455t9o5y845uvhyop4wm';
 
 async function register(email, displayName, password, imageIndex, gender) {
     const existingEmail = await User.findOne({ email }).collation({ locale: 'en', strength: 2 });
@@ -28,10 +28,11 @@ async function register(email, displayName, password, imageIndex, gender) {
     return token;
 }
 
-async function createSession({ _id, email }) {
+async function createSession({ _id, email, displayName }) {
     const payload = {
         _id,
         email, 
+        displayName
     }
 
     const token = jwt.sign(payload, JST_SECRET);
@@ -45,6 +46,21 @@ async function getAllUsers() {
 
 async function getUserById(id) {
     return User.find(id).lean();
+}
+
+async function login(email, password) {
+    const user = await User.findOne({ email }).collation({ locale: 'en', strength: 2 });
+    if (!user) {
+        throw new Error('Incorrect email or password!');
+    }
+
+    const hasMatch = await bcrypt.compare(password, user.hashedPassword);
+
+    if (!hasMatch) {
+        throw new Error('Incorrect email or password!');
+    }
+
+    return createSession(user);
 }
 
 module.exports = {
