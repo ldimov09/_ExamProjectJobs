@@ -4,6 +4,9 @@ import { CreateJobFormComponent } from './create-job-form/create-job-form.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JobCatalogComponent } from './job-catalog/job-catalog.component';
 import { EditJobFormComponent } from './edit-job-form/edit-job-form.component';
+import { ShortTextPipe } from '../short-text.pipe';
+import { JobDetailsComponent } from './job-details/job-details.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -11,12 +14,15 @@ import { EditJobFormComponent } from './edit-job-form/edit-job-form.component';
   declarations: [
     CreateJobFormComponent,
     JobCatalogComponent,
-    EditJobFormComponent
+    EditJobFormComponent,
+    ShortTextPipe,
+    JobDetailsComponent    
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   exports: [
     CreateJobFormComponent,

@@ -14,6 +14,7 @@ import { LoginFormComponent } from './auth/login-form/login-form.component';
 import { RegisterFormComponent } from './auth/register-form/register-form.component';
 import { JobCatalogComponent } from './jobs/job-catalog/job-catalog.component';
 import { CreateJobFormComponent } from './jobs/create-job-form/create-job-form.component';
+import { JobDetailsComponent } from './jobs/job-details/job-details.component';
 
 @NgModule({
     declarations: [
@@ -37,6 +38,7 @@ import { CreateJobFormComponent } from './jobs/create-job-form/create-job-form.c
             {path:'register', component: RegisterFormComponent},
             {path:'catalog', component: JobCatalogComponent},
             {path:'create', component: CreateJobFormComponent},
+            {path:'catalog/:id', component: JobDetailsComponent},
 
         ])
     ]
