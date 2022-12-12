@@ -10,7 +10,11 @@
             style="position: relative">
             <h2>{{job.name}}</h2>
             <p>{{job.description | shortText:100 }}</p>
-            <a class="btn btn-outline-light" type="button"
+            <a class="btn" 
+                [ngClass]="{
+                    'btn-outline-light': job.owner == service.user._id,
+                    'btn-outline-dark': job.owner != service.user._id
+                }" type="button"
                 style="position: absolute; right: 15px; bottom: 15px" routerLink="/catalog/{{job._id}}">Details</a>
 
             <div *ngIf="service.isLoggedIn()" style="position: absolute; right: 15px; top: 15px">

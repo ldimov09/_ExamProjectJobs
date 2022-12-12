@@ -73,10 +73,17 @@ jobController.put('/jobs/favor', async (req, res) => {
 jobController.delete('/jobs/:id', async (req,res) => {
     const id = req.params.id;
     const result = await deleteById(id);
+
+
+    res.send(result);
 })
 jobController.put('/jobs/edit/:id', async (req, res) => {
     const id = req.params.id;
+
+    console.log(req.body);
     const result = await updateById(id, req.body);
+
+    res.send(result);
 })
 
 

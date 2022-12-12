@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { PasswordValidators } from 'src/app/auth/register-form/password.validators';
 import { UserService } from 'src/app/auth/user.service';
 import { IJob } from 'src/app/interfaces/job.interface';
@@ -16,7 +17,7 @@ export class CreateJobFormComponent implements OnInit {
   users! : IUser[];
   jobs! : IJob[];
 
-  constructor(private service: UserService, private jobService: JobService) { }
+  constructor(private service: UserService, private jobService: JobService, private router: Router) { }
 
   ngOnInit(): void {
     this.service.getUsers().subscribe({
@@ -60,6 +61,7 @@ export class CreateJobFormComponent implements OnInit {
       .subscribe({
         next: (response) => {
           console.log(response);
+        this.router.navigate(['/catalog'])
         },
         error: () => {
 
