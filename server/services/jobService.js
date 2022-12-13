@@ -15,7 +15,6 @@ async function createJob(job) {
 
 async function updateJobReaction({jobId, reaction, userId}) {
     const job = await Jobs.findById(jobId)
-    console.log(job.likes);
     const indexLike = job.likes.indexOf(userId);
     const indexDislike = job.dislikes.indexOf(userId);
 
@@ -53,7 +52,6 @@ async function updateUserApplications({userId, action, jobId}) {
     if(action == true) {
         user.applications.push(jobId);
     }
-    console.log(user);
 
     await job.save();
     return await user.save();
@@ -71,7 +69,6 @@ async function updateUserFavorite({userId, action, jobId}) {
         user.favorites.push(jobId);
     }
     
-    console.log(user);
     return await user.save();
 }
 

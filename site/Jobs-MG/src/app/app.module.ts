@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,12 +17,15 @@ import { JobCatalogComponent } from './jobs/job-catalog/job-catalog.component';
 import { CreateJobFormComponent } from './jobs/create-job-form/create-job-form.component';
 import { JobDetailsComponent } from './jobs/job-details/job-details.component';
 import { EditJobFormComponent } from './jobs/edit-job-form/edit-job-form.component';
+import { DemoComponent } from './demo/demo.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavigationComponent,
         HomeComponent,
+        DemoComponent,
     ],
     providers: [
         UserService
@@ -33,6 +37,8 @@ import { EditJobFormComponent } from './jobs/edit-job-form/edit-job-form.compone
         HttpClientModule,
         AuthModule,
         JobsModule,
+        BrowserAnimationsModule,
+        FormsModule,
         RouterModule.forRoot([
             {path:'', component: HomeComponent},
             {path:'login', component: LoginFormComponent},
@@ -40,7 +46,8 @@ import { EditJobFormComponent } from './jobs/edit-job-form/edit-job-form.compone
             {path:'catalog', component: JobCatalogComponent},
             {path:'create', component: CreateJobFormComponent},
             {path:'catalog/:id', component: JobDetailsComponent},
-            {path: 'catalog/edit/:id', component: EditJobFormComponent}
+            {path:'catalog/edit/:id', component: EditJobFormComponent},
+            {path:'demo', component: DemoComponent},
 
         ])
     ]

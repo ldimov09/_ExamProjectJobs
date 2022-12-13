@@ -45,7 +45,7 @@ async function getAllUsers() {
 }
 
 async function getUserById(id) {
-    return User.find(id).lean();
+    return User.findById(id).lean();
 }
 
 async function login({email, password}) {

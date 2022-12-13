@@ -6,4 +6,5 @@ export interface IJob {
     owner?: string;  
     likes?: string[];
     dislikes?: string[];
+    applications?: string[];
 }

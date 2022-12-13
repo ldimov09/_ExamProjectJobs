@@ -7,6 +7,8 @@ import { EditJobFormComponent } from './edit-job-form/edit-job-form.component';
 import { ShortTextPipe } from '../short-text.pipe';
 import { JobDetailsComponent } from './job-details/job-details.component';
 import { RouterModule } from '@angular/router';
+import { LikeDislikeComponent } from './like-dislike/like-dislike.component';
+import { FavoriteComponent } from './favorite/favorite.component';
 
 
 
@@ -16,7 +18,9 @@ import { RouterModule } from '@angular/router';
     JobCatalogComponent,
     EditJobFormComponent,
     ShortTextPipe,
-    JobDetailsComponent    
+    JobDetailsComponent,
+    LikeDislikeComponent,
+    FavoriteComponent    
   ],
   imports: [
     CommonModule,

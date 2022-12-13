@@ -3,7 +3,6 @@ const authContoller = require('express').Router();
 
 
 authContoller.post('/register', async function (req, res) {
-    console.log(req.body);
     try{
         const token = await register(req.body.email, req.body.displayName, req.body.password, req.body.imageIndex, req.body.gender);
         res.send(JSON.stringify({
@@ -34,7 +33,6 @@ authContoller.post('/login', async (req, res) => {
         password: req.body.userPassword,
     }
     try{
-        console.log(user);
         const token = await login(user);
         res.send({
             success: true,
@@ -50,14 +48,12 @@ authContoller.post('/login', async (req, res) => {
 
 })
 
-/*
 authContoller.get('/users/:id', async (req, res) => {
 
     const user = await getUserById(req.params.id);
     res.send({success: true, result: user});
 })
 
-*/
 
 
 

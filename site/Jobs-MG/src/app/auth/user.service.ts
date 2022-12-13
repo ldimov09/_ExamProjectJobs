@@ -13,11 +13,11 @@ interface ICreateUsersResponse {
     error: string;
 }
 
-/*interface IGetUserResponse {
+interface IGetUserResponse {
   success: boolean;
   result: IUser;
   error: string;
-}*/
+}
 
 @Injectable({
     providedIn: 'root'
@@ -25,16 +25,31 @@ interface ICreateUsersResponse {
 export class UserService {
 
     private url: string = 'http://localhost:3000/api/auth/';
+    //users!:IUser[];
+    constructor(private http: HttpClient) { 
+        //this.serviceGetUsers();
+        //console.log("omg");
+    }
 
-    constructor(private http: HttpClient) { }
+    /*
+    serviceGetUsers(){
+        this.getUsers().subscribe({
+            next: (response) => {
+                this.users = response.result;
+            },
+            error: (error) => {
+            }
+        })
+    }
+    */
 
     getUsers() {
         return this.http.get<IGetUsersResponse>(this.url + 'users');
     }
 
-    /*getUserById(id: string){
+    getUserById(id: string){
       return this.http.get<IGetUserResponse>(this.url + 'users/' + id)
-    }*/
+    }
 
     createUser(user: IUser) {
         return this.http.post<ICreateUsersResponse>(this.url + 'register', user);
@@ -48,10 +63,10 @@ export class UserService {
         return this.http.post(this.url + 'login', credentials);
     }
 
-    isLoggedIn() {
+    isLoggedIn():boolean {
         const helper = new JwtHelperService();
         let token = localStorage.getItem('token');
-        if (!token) return null;
+        if (!token) return false;
         return !helper.isTokenExpired(token);
     }
 
@@ -61,6 +76,10 @@ export class UserService {
 
         const helper = new JwtHelperService();
         return helper.decodeToken(token);
+    }
+
+    getFavorites(){
+
     }
 
 }

@@ -14,7 +14,6 @@ jobController.get('/jobs/details/:id', async (req, res) => {
 jobController.get('/jobs', async (req, res) => {
     const result = await getAll();
     try{ 
-        //console.log(result);
         res.send({
             sucsess: true,
             result: result
@@ -30,7 +29,6 @@ jobController.get('/jobs', async (req, res) => {
 jobController.post('/jobs/create', async (req, res) => {
     try {
         const result = await createJob(req.body);
-        console.log(result);
         res.send({
             sucsess: true,
             result: result
@@ -46,7 +44,6 @@ jobController.post('/jobs/create', async (req, res) => {
 jobController.put('/jobs/react', async (req, res) => {
     try{
         const result = await updateJobReaction(req.body);
-        console.log('Reuslt like dislike', result);
         res.send({
             sucsess: true,
             result: result
@@ -60,6 +57,7 @@ jobController.put('/jobs/react', async (req, res) => {
 })
 
 jobController.put('/jobs/apply', async (req, res) => {
+
 
     res.send(await updateUserApplications(req.body));
 
@@ -80,7 +78,6 @@ jobController.delete('/jobs/:id', async (req,res) => {
 jobController.put('/jobs/edit/:id', async (req, res) => {
     const id = req.params.id;
 
-    console.log(req.body);
     const result = await updateById(id, req.body);
 
     res.send(result);
