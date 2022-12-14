@@ -1,0 +1,256 @@
+[{
+  "_id": {
+    "$oid": "63921fcbef1cf98621a7032a"
+  },
+  "displayName": "Maria Todorova",
+  "hashedPassword": "$2b$10$eNhHq0h96BfMReM6ZSX5oe6tIsmRcc6EFSO4f2iYyQ4iGp3enCq2G",
+  "email": "maria@mail.bg",
+  "favorites": [
+    {
+      "$oid": "639376fc045fca10ea31bc7f"
+    }
+  ],
+  "applications": [
+    {
+      "$oid": "6397811b1bb0c65003366803"
+    },
+    {
+      "$oid": "639376fc045fca10ea31bc7f"
+    },
+    {
+      "$oid": "638f7763df380c9ec6ade540"
+    }
+  ],
+  "gender": "female",
+  "imageIndex": 6,
+  "__v": 22
+},{
+  "_id": {
+    "$oid": "639220425a30c5dfecf42cc3"
+  },
+  "displayName": "Elena Dimotrova",
+  "hashedPassword": "$2b$10$kfApdIXGDHFsF/JT6UM4t.dBXXk.ni.JYAM/ybglPipoox0VdBkzi",
+  "email": "elena09@mail.bg",
+  "favorites": [
+    {
+      "$oid": "638f7763df380c9ec6ade540"
+    },
+    {
+      "$oid": "6397811b1bb0c65003366803"
+    },
+    {
+      "$oid": "639376fc045fca10ea31bc7f"
+    }
+  ],
+  "applications": [
+    {
+      "$oid": "639376fc045fca10ea31bc7f"
+    }
+  ],
+  "gender": "female",
+  "imageIndex": 8,
+  "__v": 52
+},{
+  "_id": {
+    "$oid": "639353420cd64b0a556afd40"
+  },
+  "displayName": "Marin Zletanov",
+  "hashedPassword": "$2b$10$iU2u4ZrZKzAsCqxpJMymOOEq7m9qrkhoAI6YEgwPi9H0A9y6epwRe",
+  "email": "some@email.com",
+  "favorites": [
+    {
+      "$oid": "639376fc045fca10ea31bc7f"
+    },
+    {
+      "$oid": "6393762f045fca10ea31bc7c"
+    },
+    {
+      "$oid": "638f7763df380c9ec6ade540"
+    },
+    {
+      "$oid": "6394c98a42906c71783c6c7d"
+    }
+  ],
+  "applications": [
+    {
+      "$oid": "6394c98a42906c71783c6c7d"
+    },
+    {
+      "$oid": "6393762f045fca10ea31bc7c"
+    },
+    {
+      "$oid": "638f7763df380c9ec6ade540"
+    },
+    {
+      "$oid": "6394c88442906c71783c6c78"
+    }
+  ],
+  "gender": "male",
+  "imageIndex": 2,
+  "__v": 95
+},{
+  "_id": {
+    "$oid": "639353e70cd64b0a556afd44"
+  },
+  "displayName": "Todor Gochev",
+  "hashedPassword": "$2b$10$WDVhj9pEUrCqEO47ajRXhOJN9Z74SragMa/dEYtAqgMfIjBs0THl2",
+  "email": "some@ttt.com",
+  "favorites": [
+    {
+      "$oid": "6397811b1bb0c65003366803"
+    },
+    {
+      "$oid": "639376fc045fca10ea31bc7f"
+    },
+    {
+      "$oid": "638f7763df380c9ec6ade540"
+    }
+  ],
+  "applications": [],
+  "gender": "male",
+  "imageIndex": 3,
+  "__v": 9
+},{
+  "_id": {
+    "$oid": "63935ab94c2d10a6e7bd415c"
+  },
+  "displayName": "Lazar Lolov",
+  "hashedPassword": "$2b$10$C07bsKvDbHrY446Pdq4PCuZ3eRSG5iLkl5YIl.YmUXpKhxTM.7SA.",
+  "email": "lolo@lolo.com",
+  "favorites": [
+    {
+      "$oid": "6397811b1bb0c65003366803"
+    }
+  ],
+  "applications": [
+    {
+      "$oid": "639376fc045fca10ea31bc7f"
+    },
+    {
+      "$oid": "6393762f045fca10ea31bc7c"
+    }
+  ],
+  "gender": "male",
+  "imageIndex": 3,
+  "__v": 11
+},{
+  "_id": {
+    "$oid": "63935d3c4c2d10a6e7bd4166"
+  },
+  "displayName": "Zizo Zozov",
+  "hashedPassword": "$2b$10$jgdkJHF1.195XTu.jHAE2uf4d8Ex.jSRSS7j4Kf51ijhyiRqJ1vzq",
+  "email": "Ziziz@zi.zi",
+  "favorites": [
+    {
+      "$oid": "6394c98a42906c71783c6c7d"
+    },
+    {
+      "$oid": "6393762f045fca10ea31bc7c"
+    },
+    {
+      "$oid": "6397811b1bb0c65003366803"
+    }
+  ],
+  "applications": [
+    {
+      "$oid": "638f7763df380c9ec6ade540"
+    }
+  ],
+  "gender": "male",
+  "imageIndex": 3,
+  "__v": 27
+},{
+  "_id": {
+    "$oid": "63935ebf4c2d10a6e7bd416f"
+  },
+  "displayName": "Toko Kokokov",
+  "hashedPassword": "$2b$10$V1KqvgePzB4CGeU0Y0F6Lejwa6Z3hXJBMx932FSeZII.oUoXB3WBa",
+  "email": "Toko@toko.ok",
+  "favorites": [
+    {
+      "$oid": "638f7763df380c9ec6ade540"
+    }
+  ],
+  "applications": [
+    {
+      "$oid": "6393762f045fca10ea31bc7c"
+    },
+    {
+      "$oid": "639376fc045fca10ea31bc7f"
+    },
+    {
+      "$oid": "6397811b1bb0c65003366803"
+    }
+  ],
+  "gender": "male",
+  "imageIndex": 3,
+  "__v": 10
+},{
+  "_id": {
+    "$oid": "6398c2a74f1f81073af935da"
+  },
+  "displayName": "Peter Jonhson",
+  "hashedPassword": "$2b$10$lJ7riYDPg/oplFP5IbRg9.F0VCN2sEUTRqC53TjP4vra3t.MGe0pC",
+  "email": "peter@abv.bg",
+  "favorites": [
+    {
+      "$oid": "6394c98a42906c71783c6c7d"
+    },
+    {
+      "$oid": "6393762f045fca10ea31bc7c"
+    },
+    {
+      "$oid": "638f7763df380c9ec6ade540"
+    }
+  ],
+  "applications": [
+    {
+      "$oid": "6394c98a42906c71783c6c7d"
+    },
+    {
+      "$oid": "639376fc045fca10ea31bc7f"
+    }
+  ],
+  "gender": "male",
+  "imageIndex": 3,
+  "__v": 9
+},{
+  "_id": {
+    "$oid": "6398c2cf4f1f81073af935df"
+  },
+  "displayName": "Lyuboslav Dimov",
+  "hashedPassword": "$2b$10$CBonxItJ0THJwUMFzvzoEeShUjsRK14wssqvlkDbkEjB6jwAfR/um",
+  "email": "luboslavdimov@gmail.com",
+  "favorites": [
+    {
+      "$oid": "638f7763df380c9ec6ade540"
+    },
+    {
+      "$oid": "6394c98a42906c71783c6c7d"
+    }
+  ],
+  "applications": [
+    {
+      "$oid": "6397811b1bb0c65003366803"
+    }
+  ],
+  "gender": "male",
+  "imageIndex": 3,
+  "__v": 3
+},{
+  "_id": {
+    "$oid": "6398c34b4f1f81073af935e4"
+  },
+  "displayName": "Elbert Holt",
+  "hashedPassword": "$2b$10$oP7.q17t5/AzlSHkN2mZ2OyAZdH4MByLdO6mmegk70XgwJ/QGSiHa",
+  "email": "playerBoy01@outlook.com",
+  "favorites": [],
+  "applications": [
+    {
+      "$oid": "6393762f045fca10ea31bc7c"
+    }
+  ],
+  "gender": "male",
+  "imageIndex": 3,
+  "__v": 5
+}]
