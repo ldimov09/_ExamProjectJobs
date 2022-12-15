@@ -1,14 +1,25 @@
 const Jobs = require("../models/jobs");
 const Users = require("../models/users");
 const { getById, getAll, createJob, updateJobReaction, updateUserApplications, updateById, updateUserFavorite, deleteById } = require("../services/jobService");
+const { verifyToken } = require("../services/userService");
 const jobController = require('express').Router();
 
 jobController.get('/jobs/details/:id', async (req, res) => {
+    try{ 
+        const token = req.headers["authorization"];
 
-    res.send({
-        result: await getById(req.params.id),
-        sucsess: true
-    });
+        verifyToken(token);
+        const result = await getById(req.params.id);
+        res.send({
+            sucsess: true,
+            result: result
+        });
+    } catch (err) {
+        res.send({
+            sucsess: false,
+            error: err.message
+        })
+    }
 })
 
 jobController.get('/jobs', async (req, res) => {
@@ -28,6 +39,8 @@ jobController.get('/jobs', async (req, res) => {
 
 jobController.post('/jobs/create', async (req, res) => {
     try {
+        const token = req.headers["authorization"];
+        verifyToken(token);
         const result = await createJob(req.body);
         res.send({
             sucsess: true,
@@ -43,6 +56,8 @@ jobController.post('/jobs/create', async (req, res) => {
 
 jobController.put('/jobs/react', async (req, res) => {
     try{
+        const token = req.headers["authorization"];
+        verifyToken(token);
         const result = await updateJobReaction(req.body);
         res.send({
             sucsess: true,
@@ -57,30 +72,92 @@ jobController.put('/jobs/react', async (req, res) => {
 })
 
 jobController.put('/jobs/apply', async (req, res) => {
+    try{
+        const token = req.headers["authorization"];
+        verifyToken(token);
+        
+        const result = await updateUserApplications(req.body)
+        res.send({
+            sucsess: true,
+            result: result,
+        });
+
+    }catch(err){
+        res.send({ 
+            sucsess: false,
+            error: err.message,
+        })
+
+    }
 
 
-    res.send(await updateUserApplications(req.body));
 
 })
 
 jobController.put('/jobs/favor', async (req, res) => {
 
-    res.send(await updateUserFavorite(req.body));
+    try{
+        const token = req.headers["authorization"];
+        verifyToken(token);
+        
+        const result = await updateUserFavorite(req.body)
+        res.send({
+            sucsess: true,
+            result: result,
+        });
+
+    }catch(err){
+        res.send({ 
+            sucsess: false,
+            error: err.message,
+        })
+
+    }
 })
 
 jobController.delete('/jobs/:id', async (req,res) => {
-    const id = req.params.id;
-    const result = await deleteById(id);
 
+    try{
+        const token = req.headers["authorization"];
+        verifyToken(token);
+        
+        const id = req.params.id;
+        const result = await deleteById(id);
 
-    res.send(result);
+        res.send({
+            sucsess: true,
+            result: result,
+        });
+
+    }catch(err){
+        res.send({ 
+            sucsess: false,
+            error: err.message,
+        })
+
+    }
+
 })
 jobController.put('/jobs/edit/:id', async (req, res) => {
-    const id = req.params.id;
+    try{
+        const token = req.headers["authorization"];
+        verifyToken(token);
+        
+        const id = req.params.id;
+        const result = await updateById(id);
 
-    const result = await updateById(id, req.body);
+        res.send({
+            sucsess: true,
+            result: result,
+        });
 
-    res.send(result);
+    }catch(err){
+        res.send({ 
+            sucsess: false,
+            error: err.message,
+        })
+
+    }
 })
 
 

@@ -1,0 +1,26 @@
+.relative-container {
+    position: relative;
+}
+
+.text-config {
+    text-align: justify;
+    white-space: pre-wrap;
+}
+
+.left-top {
+    position: absolute;
+    left: 55px;
+    top: 40px;
+}
+
+.right-top {
+    position: absolute;
+    right: 55px;
+    top: 40px;
+}
+
+.bottom-right {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+}

@@ -62,9 +62,15 @@ async function login({email, password}) {
     return await createSession(user);
 }
 
+function verifyToken(token) {
+    return jwt.verify(token, JST_SECRET);
+}
+
+
 module.exports = {
     register: register,
     getAllUsers: getAllUsers,
     getUserById: getUserById,
     login: login,
+    verifyToken:verifyToken
 }

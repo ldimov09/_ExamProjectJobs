@@ -28,7 +28,6 @@ export class JobCatalogComponent implements OnInit {
         'favoriteFilter': new FormControl(),
         'appliedFilter': new FormControl(),
         'likedFilter': new FormControl(),
-        'dislikedFilter': new FormControl(),
         'yourJobs': new FormControl(),
     });
 
@@ -55,10 +54,6 @@ export class JobCatalogComponent implements OnInit {
         if(form.value.likedFilter){
             filterdJobs = filterdJobs.filter(e => e.likes?.includes(this.user._id!))
         }
-        if(form.value.dislikedFilter){
-            filterdJobs = filterdJobs.filter(e => e.dislikes?.includes(this.user._id!))
-        }
-
         if(form.value.yourJobs){
             filterdJobs = filterdJobs.filter(e => e.owner === this.user._id);
         }

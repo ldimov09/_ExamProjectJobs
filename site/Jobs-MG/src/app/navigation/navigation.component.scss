@@ -1,9 +1,11 @@
 #hide-button {
     display: none;
 }
+
 #nav-menu {
     display: none;
 }
+
 input#nav-toggle:checked~label#show-button {
     display: none !important;
 }
@@ -18,11 +20,18 @@ input#nav-toggle:checked~#nav-menu {
     text-align: center;
     width: 100%;
 }
-#home-link{
+
+#home-link {
     text-decoration: none;
     color: black;
     font-size: 2rem;
 }
-nav{
+
+nav {
     background-color: #efefef;
+}
+
+.svg {
+    height: auto;
+    width: 1.5rem;
 }
