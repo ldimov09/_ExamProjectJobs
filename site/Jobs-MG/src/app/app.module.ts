@@ -19,6 +19,8 @@ import { JobDetailsComponent } from './jobs/job-details/job-details.component';
 import { EditJobFormComponent } from './jobs/edit-job-form/edit-job-form.component';
 import { DemoComponent } from './demo/demo.component';
 import { FormsModule } from '@angular/forms';
+import { AuthGuard } from './auth/guard.service';
+import { NotloggedGuard } from './auth/notlogged.guard';
 
 @NgModule({
     declarations: [
@@ -41,12 +43,12 @@ import { FormsModule } from '@angular/forms';
         FormsModule,
         RouterModule.forRoot([
             {path:'', component: HomeComponent},
-            {path:'login', component: LoginFormComponent},
-            {path:'register', component: RegisterFormComponent},
+            {path:'login', component: LoginFormComponent, canActivate: [NotloggedGuard]},
+            {path:'register', component: RegisterFormComponent, canActivate: [NotloggedGuard]},
             {path:'catalog', component: JobCatalogComponent},
-            {path:'create', component: CreateJobFormComponent},
-            {path:'catalog/:id', component: JobDetailsComponent},
-            {path:'catalog/edit/:id', component: EditJobFormComponent},
+            {path:'create', component: CreateJobFormComponent, canActivate: [AuthGuard]},
+            {path:'catalog/:id', component: JobDetailsComponent , canActivate: [AuthGuard]},
+            {path:'catalog/edit/:id', component: EditJobFormComponent, canActivate: [AuthGuard]},
             {path:'demo', component: DemoComponent},
 
         ])

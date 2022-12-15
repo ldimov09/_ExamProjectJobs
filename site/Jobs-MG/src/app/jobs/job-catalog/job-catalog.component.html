@@ -1,3 +1,40 @@
+<div @slide class="p-3 mb-4 bg-light border rounded-3">
+    <h4 class="display-5 fw-bold">Filters</h4>
+    <form [formGroup]='form' (ngSubmit)="handleFilters(form)"  style="display: flex; align-items: center; flex-wrap: wrap;">
+        <div class="form-group">
+            <input formControlName="favoriteFilter" class="form-check-input" type="checkbox" value="" id="favorite" >
+            <label class="form-check-label ms-2 me-4" for="favorite">
+              Favorites
+            </label>
+        </div>
+        <div class="form-group">
+            <input formControlName="appliedFilter" class="form-check-input" type="checkbox" value="" id="applied" >
+            <label class="form-check-label ms-2  me-4" for="applied">
+              Applied to
+            </label>
+        </div>
+        <div class="form-group">
+            <input formControlName="likedFilter" class="form-check-input" type="checkbox" value="" id="liked" >
+            <label class="form-check-label ms-2 me-4" for="liked">
+              Liked
+            </label>
+        </div>
+        <div class="form-group">
+            <input formControlName="dislikedFilter" class="form-check-input" type="checkbox" value="" id="disliked" >
+            <label class="form-check-label ms-2 me-4" for="disliked">
+              Disliked
+            </label>
+        </div>
+        <div class="form-group">
+            <input formControlName="yourJobs" class="form-check-input" type="checkbox" value="" id="owned" >
+            <label class="form-check-label ms-2 me-4" for="owned">
+                Your jobs
+            </label>
+        </div>
+        <button [disabled]="" class="btn btn-primary">Search</button>
+    </form>
+
+</div>
 <div @slide class="row align-items-md-stretch">
     <div class="col-md-6 mb-4" *ngFor="let job of jobs">
         <div class="h-100 p-5 border rounded-3" [ngClass]="{
@@ -5,7 +42,8 @@
                 'bg-dark': isOwner(job),
                 'bg-light': !isOwner(job)
             }" style="position: relative">
-            <span class="badge span-sm bg-secondary" style="position: absolute; top: 15px; left: 15px" *ngIf="checkApplication(job, true)">Applied</span>
+            <span class="badge span-sm bg-secondary" style="position: absolute; top: 15px; left: 15px"
+                *ngIf="checkApplication(job, true)">Applied</span>
             <h2> {{job.name}}</h2>
             <p>{{job.description | shortText:100 }}</p>
             <a class="btn" *ngIf="ownerId" [ngClass]="{
@@ -21,7 +59,7 @@
             <div style="position: absolute; left: 15px; bottom: 15px">
                 <like-dislike [job]="job" [iconSize]="24"></like-dislike>
             </div>
-            
+
         </div>
     </div>
 

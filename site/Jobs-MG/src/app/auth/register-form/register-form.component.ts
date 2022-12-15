@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { UserService } from '../user.service';
@@ -13,22 +13,25 @@ export class RegisterFormComponent implements OnInit {
 
   users!: IUser[];
 
+  @Output() newErrorEvent = new EventEmitter<string>();
+
+
   constructor(private service: UserService) {
-    
+
   }
 
   getAllUsers() {
     console.log("tuk");
     this.service.getUsers()
-    .subscribe({
-      next: (response) =>{
-        this.users = response.result;
-        console.log(this.users);
-      },
-      error: (error) =>{
+      .subscribe({
+        next: (response) => {
+          this.users = response.result;
+          console.log(this.users);
+        },
+        error: (error) => {
 
-      }
-    })
+        }
+      })
   }
 
   ngOnInit(): void {
@@ -54,12 +57,12 @@ export class RegisterFormComponent implements OnInit {
     return this.form.get('name')
   }
 
-  get userRepass () {
+  get userRepass() {
     return this.form.get('userRepass')
   }
 
-  handleSubmit(){
-    let formValue:IUser = {
+  handleSubmit() {
+    let formValue: IUser = {
       displayName: this.form.value.name!,
       password: this.form.value.password!,
       email: this.form.value.email!,
@@ -70,8 +73,12 @@ export class RegisterFormComponent implements OnInit {
     this.service.createUser(formValue)
       .subscribe({
         next: (response) => {
-          console.log(response);
-          this.getAllUsers();
+          if (!response.success) {
+            console.log(response);
+            this.emitError(response.error);
+          }else{
+            this.getAllUsers();
+          }
         },
         error: () => {
 
@@ -82,5 +89,9 @@ export class RegisterFormComponent implements OnInit {
 
   handleDeleteUser(user: IUser) {
 
+  }
+
+  emitError(error: string) {
+    this.newErrorEvent.emit(error);
   }
 }

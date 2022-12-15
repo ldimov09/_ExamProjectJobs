@@ -1,4 +1,5 @@
-<form [formGroup]="form" (ngSubmit)="createJob(form)">
+
+<form [formGroup]="form" (ngSubmit)="createJob(form)" class="w-100">
     <div class="form-group">
         <label for="name">Job name</label>
         <input 
@@ -49,3 +50,4 @@
 
     <button class="btn btn-primary" [disabled]="form.invalid">Create</button>
 </form>
+

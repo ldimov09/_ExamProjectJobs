@@ -14,9 +14,9 @@ interface ICreateUsersResponse {
 }
 
 interface IGetUserResponse {
-  success: boolean;
-  result: IUser;
-  error: string;
+    success: boolean;
+    result: IUser;
+    error: string;
 }
 
 @Injectable({
@@ -26,7 +26,7 @@ export class UserService {
 
     private url: string = 'http://localhost:3000/api/auth/';
     //users!:IUser[];
-    constructor(private http: HttpClient) { 
+    constructor(private http: HttpClient) {
         //this.serviceGetUsers();
         //console.log("omg");
     }
@@ -47,8 +47,8 @@ export class UserService {
         return this.http.get<IGetUsersResponse>(this.url + 'users');
     }
 
-    getUserById(id: string){
-      return this.http.get<IGetUserResponse>(this.url + 'users/' + id)
+    getUserById(id: string) {
+        return this.http.get<IGetUserResponse>(this.url + 'users/' + id)
     }
 
     createUser(user: IUser) {
@@ -63,7 +63,7 @@ export class UserService {
         return this.http.post(this.url + 'login', credentials);
     }
 
-    isLoggedIn():boolean {
+    isLoggedIn(): boolean {
         const helper = new JwtHelperService();
         let token = localStorage.getItem('token');
         if (!token) return false;
@@ -78,7 +78,7 @@ export class UserService {
         return helper.decodeToken(token);
     }
 
-    getFavorites(){
+    getFavorites() {
 
     }
 

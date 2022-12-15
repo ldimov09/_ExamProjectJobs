@@ -30,15 +30,15 @@ export let slide = trigger('slide', [
     
     transition('void => *', [
         style({ transform: 'translateX(-100px)' }),
-        animate("1s ease-out")
+        animate("0.5s ease-out")
     ]),
     
 
-    /*
+    
     transition('* => void', [
-        animate("1s ease-in", style({transform: 'translateX(-100%)'}))
+        animate("0.25s ease-in", style({transform: 'translateX(-100%)'}))
     ])
-    */
+    
     
     
     /*

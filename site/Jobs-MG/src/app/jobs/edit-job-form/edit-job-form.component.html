@@ -19,6 +19,7 @@
             type="text"
             id="description"
             placeholder="Job Offer description"
+            rows="10"
             formControlName="description">
         </textarea>
         <div *ngIf="description?.touched && description?.invalid" class="alert alert-danger">

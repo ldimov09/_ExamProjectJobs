@@ -45,7 +45,7 @@ export class CreateJobFormComponent implements OnInit {
   get description() {
     return this.form.get('description');
   }
-  get salary() {
+  get salary() { 
     return this.form.get('salary');
   }
 
@@ -54,7 +54,7 @@ export class CreateJobFormComponent implements OnInit {
       name: this.form.value.name!,
       description: this.form.value.description!,
       salary: form.value.salary!,
-      owner: form.value.owner,
+      owner: this.service.user._id,
     };
     console.log(formValue);
     this.jobService.createJob(formValue)
@@ -74,13 +74,7 @@ export class CreateJobFormComponent implements OnInit {
     this.jobService.getAllJobs().subscribe({
       next: (response) => {
         this.jobs = response.result;
-        console.log(this.jobs);
-        this.form.patchValue({
-          name: this.jobs[0].name,
-          description: this.jobs[0].description,
-          salary: this.jobs[0].salary,
-          owner: this.jobs[0].owner,
-        });        
+        console.log(this.jobs);      
       },
       error: (error) => {
 
