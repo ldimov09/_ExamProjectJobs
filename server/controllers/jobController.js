@@ -144,7 +144,7 @@ jobController.put('/jobs/edit/:id', async (req, res) => {
         verifyToken(token);
         
         const id = req.params.id;
-        const result = await updateById(id);
+        const result = await updateById(id, req.body);
 
         res.send({
             sucsess: true,

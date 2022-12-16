@@ -35,7 +35,6 @@ export class CreateJobFormComponent implements OnInit {
     'name': new FormControl('', [Validators.required]),
     'description': new FormControl('', [Validators.required]),
     'salary': new FormControl(0, [Validators.required]),
-    'owner': new FormControl('', [Validators.required]),
   });
 
   get name() {

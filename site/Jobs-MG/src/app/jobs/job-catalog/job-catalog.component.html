@@ -57,5 +57,11 @@
         </div>
     </div>
 
+    <ng-container *ngIf="jobs.length == 0">
+        <div>
+            <h2><i>No jobs found for your search criteria.</i></h2>
+        </div>
+    </ng-container>
+
 
 </div>

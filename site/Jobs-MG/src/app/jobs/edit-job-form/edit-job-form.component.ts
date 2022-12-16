@@ -45,11 +45,10 @@ export class EditJobFormComponent implements OnInit {
             description: this.form.value.description!,
             salary: this.form.value.salary!,
         }
-        console.log(this.jobId);
-        
+
         this.jobService.updateJob(job, this.jobId)
-        .subscribe({
-            next: (response) => {
+            .subscribe({
+                next: (response) => {
                     this.router.navigate(['/catalog/' + this.jobId]);
                 },
                 error: () => {

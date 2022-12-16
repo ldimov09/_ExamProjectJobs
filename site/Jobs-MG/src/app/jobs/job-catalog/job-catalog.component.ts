@@ -11,16 +11,16 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
     selector: 'app-job-catalog',
     templateUrl: './job-catalog.component.html',
     styleUrls: ['./job-catalog.component.scss'],
-    animations: [ fade, slide]
+    animations: [fade, slide]
 })
 export class JobCatalogComponent implements OnInit {
 
     user!: IUser;
     jobsStaic!: IJob[];
     jobs!: IJob[];
-    ownerId: string  = "";
+    ownerId: string = "";
     service!: UserService;
-    constructor(service: UserService, private jobService: JobService) { 
+    constructor(service: UserService, private jobService: JobService) {
         this.service = service;
     }
 
@@ -32,12 +32,12 @@ export class JobCatalogComponent implements OnInit {
     });
 
     ngOnInit(): void {
-        if(this.service.user){
+        if (this.service.user) {
             this.getUserById(this.service.user._id);
             this.getAllJobs();
             this.ownerId = this.service.user._id;
         }
-        else{
+        else {
             this.getAllJobs();
         }
     }
@@ -45,19 +45,18 @@ export class JobCatalogComponent implements OnInit {
     handleFilters(form: FormGroup) {
         this.getUserById(this.service.user._id);
         let filterdJobs = this.jobsStaic;
-        if(form.value.favoriteFilter){
+        if (form.value.favoriteFilter) {
             filterdJobs = filterdJobs.filter(e => this.user.favorites?.includes(e._id!));
         }
-        if(form.value.appliedFilter){
+        if (form.value.appliedFilter) {
             filterdJobs = filterdJobs.filter(e => this.user.applications?.includes(e._id!));
         }
-        if(form.value.likedFilter){
+        if (form.value.likedFilter) {
             filterdJobs = filterdJobs.filter(e => e.likes?.includes(this.user._id!))
         }
-        if(form.value.yourJobs){
+        if (form.value.yourJobs) {
             filterdJobs = filterdJobs.filter(e => e.owner === this.user._id);
         }
-
         this.jobs = filterdJobs;
 
     }
@@ -75,7 +74,7 @@ export class JobCatalogComponent implements OnInit {
         });
     }
 
-    getUserById(id:string){
+    getUserById(id: string) {
         this.service.getUserById(id).subscribe({
             next: (response) => {
                 this.user = response.result;
@@ -87,9 +86,9 @@ export class JobCatalogComponent implements OnInit {
         })
     }
 
-    isOwner(job:IJob){
-        if(this.service.user)
-            return  job.owner == this.service.user._id;
+    isOwner(job: IJob) {
+        if (this.service.user)
+            return job.owner == this.service.user._id;
         return false;
     }
 
