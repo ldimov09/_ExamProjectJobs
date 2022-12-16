@@ -36,6 +36,7 @@ export class JobService {
     let token = localStorage.getItem('token');
     headers = headers.set("authorization",  token!);
 
+
     return this.http.get<IGetJobResponse>(this.url + 'details/' +  id,  {headers});
   }
 

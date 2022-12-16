@@ -5,6 +5,7 @@ import { fade, slide } from './animations/animation';
 import { LoginFormComponent } from './auth/login-form/login-form.component';
 import { RegisterFormComponent } from './auth/register-form/register-form.component';
 import { HomeComponent } from './home/home.component';
+import { JobDetailsComponent } from './jobs/job-details/job-details.component';
 
 @Component({
   selector: 'app-root',
@@ -29,15 +30,15 @@ export class AppComponent {
   showWarning: boolean = false;
 
   subscribeToEventEmitter(elementRef: any) {
-    if(elementRef instanceof RegisterFormComponent || elementRef instanceof LoginFormComponent || elementRef instanceof HomeComponent){
-      const child: LoginFormComponent | RegisterFormComponent | HomeComponent  = elementRef;
+    if(elementRef instanceof RegisterFormComponent || elementRef instanceof LoginFormComponent || elementRef instanceof HomeComponent || elementRef instanceof JobDetailsComponent){
+      const child: LoginFormComponent | RegisterFormComponent | HomeComponent | JobDetailsComponent  = elementRef;
       
       child.newErrorEvent.subscribe((response) => {
-        console.log(response);
         this.error = response;
         this.showWarning = true;
-      })
-    }
+      })}
+
+      console.log(this.error, this.showWarning)
   }
 
   unsubscribeFromEventEmitter() {

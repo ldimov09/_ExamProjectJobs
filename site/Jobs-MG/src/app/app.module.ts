@@ -21,6 +21,7 @@ import { DemoComponent } from './demo/demo.component';
 import { FormsModule } from '@angular/forms';
 import { AuthGuard } from './auth/guard.service';
 import { NotloggedGuard } from './auth/notlogged.guard';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import { NotloggedGuard } from './auth/notlogged.guard';
         NavigationComponent,
         HomeComponent,
         DemoComponent,
+        NotFoundComponent,
     ],
     providers: [
         UserService
@@ -50,6 +52,7 @@ import { NotloggedGuard } from './auth/notlogged.guard';
             {path:'catalog/:id', component: JobDetailsComponent , canActivate: [AuthGuard]},
             {path:'catalog/edit/:id', component: EditJobFormComponent, canActivate: [AuthGuard]},
             {path:'demo', component: DemoComponent},
+            { path: '**', pathMatch: 'full', component: NotFoundComponent }
 
         ])
     ]

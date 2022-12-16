@@ -1,4 +1,4 @@
-<div @slide class="p-3 mb-4 bg-light border rounded-3">
+<div @slide class="p-3 mb-4 bg-light border rounded-3" *ngIf="this.service.isLoggedIn()">
     <h4 class="display-5 fw-bold">Filters</h4>
     <form [formGroup]='form' (ngSubmit)="handleFilters(form)" class="form-filter">
         <div class="form-group">
@@ -57,7 +57,7 @@
         </div>
     </div>
 
-    <ng-container *ngIf="jobs.length == 0">
+    <ng-container *ngIf="jobs?.length == 0">
         <div>
             <h2><i>No jobs found for your search criteria.</i></h2>
         </div>

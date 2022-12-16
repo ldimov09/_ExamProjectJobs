@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { fade } from 'src/app/animations/animation';
 import { UserService } from 'src/app/auth/user.service';
@@ -19,6 +19,11 @@ export class JobDetailsComponent implements OnInit {
     users!: IUser[];
     appliedUsers!: IUser[];
 
+    @Output() newErrorEvent = new EventEmitter<string>();
+
+    errorMessage!: string;
+
+
     constructor(
         private jobService: JobService, 
         public service: UserService, 
@@ -37,7 +42,14 @@ export class JobDetailsComponent implements OnInit {
         const id = this.route.snapshot.paramMap.get('id');
         this.jobService.getJob(id!).subscribe({
             next: (response) => {
-                this.jobMG = response.result;
+                if(response.result){
+                    this.jobMG = response.result;
+                }else{
+                    console.log('here')
+                    this.router.navigate(['/catalog']);
+                    this.emitError('No job found with id: ' + id);
+                }
+
                 if(this.service.user) this.getAllUsers();
 
             },
@@ -125,5 +137,9 @@ export class JobDetailsComponent implements OnInit {
             }
         })
     }    
+
+    emitError(error: string){
+        this.newErrorEvent.emit(error);
+    }
 
 }
