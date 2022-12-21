@@ -6,12 +6,11 @@
             {{error}}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="closeAlert()"></button>
         </div>
+
         <div class="full-width">
-            
-            
             <router-outlet (activate)="subscribeToEventEmitter($event) " (deactivate)="unsubscribeFromEventEmitter()"></router-outlet>
-            
         </div>
+
     </div>
     <footer class="pt-3 mt-4 text-muted border-top pb-3">&copy; 2022</footer>
 

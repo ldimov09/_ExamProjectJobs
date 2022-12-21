@@ -29,17 +29,12 @@ export class LoginFormComponent{
         return this.form.get('userPassword');
     }
 
-    ngAfterContentInit(){   
-        
-
-
+    ngOnInit(){   
         let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-
         console.log(returnUrl);
 
         if(returnUrl) {
-
-            setTimeout(() => { 
+            setTimeout(() =>{
                 this.emitError('You must login to access this page.')
             }, 0)
         } 
