@@ -38,7 +38,6 @@ export class AppComponent {
         this.showWarning = true;
       })}
 
-      console.log(this.error, this.showWarning)
   }
 
   unsubscribeFromEventEmitter() {

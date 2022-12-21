@@ -6,6 +6,9 @@ import { IJob } from 'src/app/interfaces/job.interface';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { fade, slide } from 'src/app/animations/animation';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { FavoriteComponent } from '../favorite/favorite.component';
+import { LikeDislikeComponent } from '../like-dislike/like-dislike.component';
 
 @Component({
     selector: 'app-job-catalog',
@@ -16,10 +19,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class JobCatalogComponent implements OnInit {
 
     user!: IUser;
-    jobsStaic!: IJob[];
+    jobsStatic!: IJob[];
     jobs!: IJob[];
     ownerId: string = "";
     service!: UserService;
+    subscription!: Subscription;
     constructor(service: UserService, private jobService: JobService) {
         this.service = service;
     }
@@ -43,8 +47,7 @@ export class JobCatalogComponent implements OnInit {
     }
 
     handleFilters(form: FormGroup) {
-        this.getUserById(this.service.user._id);
-        let filterdJobs = this.jobsStaic;
+        let filterdJobs = this.jobsStatic;
         if (form.value.favoriteFilter) {
             filterdJobs = filterdJobs.filter(e => this.user.favorites?.includes(e._id!));
         }
@@ -65,7 +68,7 @@ export class JobCatalogComponent implements OnInit {
         this.jobService.getAllJobs().subscribe({
             next: (response) => {
                 this.jobs = response.result;
-                this.jobsStaic = response.result;
+                this.jobsStatic = response.result;
                 console.log(this.jobs);
             },
             error: (error) => {
@@ -103,5 +106,16 @@ export class JobCatalogComponent implements OnInit {
         return false;
     }
 
+    subscribeToEventEmitter(payload: any) {
+        if (payload.favorites) {
+            this.user = payload;
+        }
+        if(payload.likes) {
+            let jobToChange = this.jobs.filter(job => job._id == payload._id)[0];
+            let index = this.jobs.indexOf(jobToChange);
+            this.jobs[index].likes = payload.likes;
+            this.jobs[index].dislikes = payload.dislikes;
+        }
+    }
 
 }

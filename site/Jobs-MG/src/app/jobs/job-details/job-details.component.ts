@@ -44,10 +44,11 @@ export class JobDetailsComponent implements OnInit {
             next: (response) => {
                 if(response.result){
                     this.jobMG = response.result;
+
                 }else{
-                    console.log('here')
-                    this.router.navigate(['/catalog']);
+                    console.log('No job found with id: ' + id);
                     this.emitError('No job found with id: ' + id);
+                    this.router.navigate(['/catalog']);
                 }
 
                 if(this.service.user) this.getAllUsers();

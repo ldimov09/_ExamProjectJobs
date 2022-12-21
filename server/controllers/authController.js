@@ -4,6 +4,7 @@ const authContoller = require('express').Router();
 
 authContoller.post('/register', async function (req, res) {
     try{
+        console.log(req.body);
         const token = await register(req.body.email, req.body.displayName, req.body.password, req.body.imageIndex, req.body.gender);
         res.send(JSON.stringify({
             result: token,

@@ -47,11 +47,11 @@
                 routerLink="/catalog/{{job._id}}">Details</a>
 
             <div class="absolute-element top-right">
-                <favorite [job]="job"></favorite>
+                <favorite [job]="job" (changeEvent)="subscribeToEventEmitter($event)"></favorite>
             </div>
 
             <div class="absolute-element bottom-left">
-                <like-dislike [job]="job" [iconSize]="24"></like-dislike>
+                <like-dislike [job]="job" (changeEvent)="subscribeToEventEmitter($event)" [iconSize]="24" ></like-dislike>
             </div>
 
         </div>

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { UserService } from '../user.service';
 import { PasswordValidators } from './password.validators';
@@ -16,7 +17,7 @@ export class RegisterFormComponent implements OnInit {
   @Output() newErrorEvent = new EventEmitter<string>();
 
 
-  constructor(private service: UserService) {
+  constructor(private service: UserService, private router: Router) {
 
   }
 
@@ -77,7 +78,10 @@ export class RegisterFormComponent implements OnInit {
             console.log(response);
             this.emitError(response.error);
           }else{
+            const token = response.result;
             this.getAllUsers();
+            this.router.navigate(['/']);
+            localStorage.setItem('token', token);
           }
         },
         error: () => {

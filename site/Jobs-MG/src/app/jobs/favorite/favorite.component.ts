@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserService } from 'src/app/auth/user.service';
 import { IJob } from 'src/app/interfaces/job.interface';
 import { IUser } from 'src/app/interfaces/user.interface';
@@ -13,6 +13,7 @@ export class FavoriteComponent implements OnInit {
 
     @Input() job!: IJob;
     @Input() iconSize:number = 24;
+    @Output() changeEvent = new EventEmitter<IUser>();
 
 
     user!: IUser;
@@ -51,7 +52,9 @@ export class FavoriteComponent implements OnInit {
         this.jobService.updateUserFavorites(payload).subscribe(
             {
                 next: (response) => {
-                    this.getUserById(this.service.user._id)
+                    this.getUserById(this.service.user._id);
+                    
+                    console.log('fine')
                 },
                 error: (error) => {
 
@@ -59,12 +62,13 @@ export class FavoriteComponent implements OnInit {
             }
         )
     }
-
+    
     getUserById(id:string){
         this.service.getUserById(id).subscribe({
             next: (response) => {
                 this.user = response.result;
                 this.loggedUserId = this.user._id!;
+                this.changeEvent.emit(this.user);
             },
             error: (error) => {
 
