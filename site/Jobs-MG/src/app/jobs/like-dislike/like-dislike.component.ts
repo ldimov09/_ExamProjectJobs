@@ -52,8 +52,10 @@ export class LikeDislikeComponent implements OnInit {
 
         this.jobService.updateJobReactions(payload)
             .subscribe({
-                next: (response) => {
-                    this.getJobById(job._id);
+                next: (response: any) => {
+                    console.log(response);
+                    this.changeEvent.emit(response.result);
+                    this.job = response.result
                 },
                 error: (error) => {
 
@@ -61,17 +63,18 @@ export class LikeDislikeComponent implements OnInit {
             });
     }
 
+    /*
     getJobById(id: string | undefined) {
         this.jobService.getJob(id!).subscribe({
             next: (response) => {
                 this.job = response.result;
-                this.changeEvent.emit(this.job);
             },
             error: (error) => {
 
             }
         })
     }
+    */
 
 
 }

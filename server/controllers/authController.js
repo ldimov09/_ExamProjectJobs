@@ -15,7 +15,6 @@ authContoller.post('/register', async function (req, res) {
             success: false,
             error: err.message,
         }));
-        throw err; 
     } 
 });
 

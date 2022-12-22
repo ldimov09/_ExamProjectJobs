@@ -15,7 +15,7 @@ export class LoginFormComponent{
 
     errorMessage!: string;
 
-    constructor( private router: Router,private route: ActivatedRoute, private service:UserService){
+    constructor(private router: Router, private route: ActivatedRoute, private service: UserService){
 
     }
     form = new FormGroup({
@@ -46,7 +46,6 @@ export class LoginFormComponent{
         .subscribe({
             next: (response:any)=>{
                 if(!response.success){
-
                     this.invalidLogin = true;
                     this.errorMessage = response.error;
                     this.emitError(response.error);
@@ -55,14 +54,8 @@ export class LoginFormComponent{
                     console.log(response.result);
                     let token = response.result;
                     localStorage.setItem('token', token);
-                    
                     let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-
-
                     this.router.navigate([returnUrl || '/']);
-
-
-
                 }
             },
             error: (error)=>{

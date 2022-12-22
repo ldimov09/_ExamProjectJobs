@@ -9,7 +9,6 @@ const JST_SECRET = 'tm`dspoksferioh8ueyw45x89x4wbft389yce789bgrnty8c7^%$%*&&^$%^
 async function register(email, displayName, password, imageIndex, gender) {
     const existingEmail = await User.findOne({ email }).collation({ locale: 'en', strength: 2 });
     if (existingEmail) {
-        console.log(email, displayName, password)
        throw new Error('Email Taken!');
     }
 

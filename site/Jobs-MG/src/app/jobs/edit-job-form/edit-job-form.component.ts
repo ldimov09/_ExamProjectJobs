@@ -20,12 +20,18 @@ export class EditJobFormComponent implements OnInit {
 
 
     constructor(private service: UserService, private jobService: JobService, private route: ActivatedRoute, private router: Router) { }
-
+    
     form = new FormGroup({
         'name': new FormControl('', [Validators.required]),
         'description': new FormControl('', [Validators.required]),
         'salary': new FormControl(0, [Validators.required]),
     })
+
+    ngOnInit(): void {
+        this.jobId = this.route.snapshot.paramMap.get('id')!;
+    
+        this.loadJob();
+    }
 
     get name() {
         return this.form.get('name')
@@ -73,12 +79,5 @@ export class EditJobFormComponent implements OnInit {
             })
     }
 
-    ngOnInit(): void {
-        this.jobId = this.route.snapshot.paramMap.get('id')!;
-        console.log(this.jobId);
-
-        this.loadJob();
-
-    }
 
 }

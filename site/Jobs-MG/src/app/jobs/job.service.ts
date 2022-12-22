@@ -3,81 +3,72 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IJob } from '../interfaces/job.interface';
 
 interface IGetAllJobsResponse {
-  result: IJob[];
-  success: boolean;
+    result: IJob[];
+    success: boolean;
 }
 
 interface ICreateJobResponse {
-  result: string;
-  success: boolean;
+    result: string;
+    success: boolean;
 }
 
 interface IGetJobResponse {
-  result: IJob;
-  success: boolean;
+    result: IJob;
+    success: boolean;
 }
 
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class JobService {
 
-  private url: string = 'http://localhost:3000/api/jobs/';
+    private url: string = 'http://localhost:3000/api/jobs/';
+    constructor(private http: HttpClient) { }
 
+    createHeaders() {
+        let headers = new HttpHeaders();
+        let token = localStorage.getItem('token');
+        headers = headers.set("authorization", token!);
+        return headers;
+    }
 
-  constructor(private http: HttpClient) { }
+    getAllJobs() {
+        return this.http.get<IGetAllJobsResponse>(this.url);
+    }
 
-  getAllJobs() {
-    return this.http.get<IGetAllJobsResponse>(this.url);
-  }
-  getJob(id: string) {
-    let headers = new HttpHeaders();
-    let token = localStorage.getItem('token');
-    headers = headers.set("authorization",  token!);
+    getJob(id: string) {
+        const headers = this.createHeaders();
+        return this.http.get<IGetJobResponse>(this.url + 'details/' + id, { headers });
+    }
 
+    updateJob(job: IJob, jobId: string) {
+        const headers = this.createHeaders();
+        return this.http.put<IGetJobResponse>(this.url + 'edit/' + jobId, job, { headers });
+    }
 
-    return this.http.get<IGetJobResponse>(this.url + 'details/' +  id,  {headers});
-  }
+    createJob(job: IJob) {
+        const headers = this.createHeaders();
+        return this.http.post<ICreateJobResponse>(this.url + 'create', job, { headers });
+    }
 
-  updateJob(job: IJob, jobId: string) {
-    let headers = new HttpHeaders();
-    let token = localStorage.getItem('token');
-    headers = headers.set("authorization", token!);
-    return this.http.put<IGetJobResponse>(this.url + 'edit/' + jobId, job, {headers});
-  }
+    updateJobReactions(reactionUpdate: any) {
+        const headers = this.createHeaders();
+        return this.http.put(this.url + 'react', reactionUpdate, { headers });
+    }
 
-  createJob(job: IJob) {
-    let headers = new HttpHeaders();
-    let token = localStorage.getItem('token');
-    headers = headers.set("authorization", token!);
-    return this.http.post<ICreateJobResponse>(this.url + 'create', job, {headers}); 
-  }
+    updateUserApplications(applicationUpdate: any) {
+        const headers = this.createHeaders();
+        return this.http.put(this.url + 'apply', applicationUpdate, { headers });
+    }
 
-  updateJobReactions(reactionUpdate: any) {
-    let headers = new HttpHeaders();
-    let token = localStorage.getItem('token');
-    headers = headers.set("authorization", token!);
-    return this.http.put(this.url + 'react', reactionUpdate, {headers});
-  }
+    updateUserFavorites(favoritesUpdate: any) {
+        const headers = this.createHeaders();
+        return this.http.put(this.url + 'favor', favoritesUpdate, { headers });
+    }
 
-  updateUserApplications(applicationUpdate: any){
-    let headers = new HttpHeaders();
-    let token = localStorage.getItem('token');
-    headers = headers.set("authorization", token!);
-    return this.http.put(this.url + 'apply', applicationUpdate, {headers});
-  }
-  updateUserFavorites(favoritesUpdate: any){
-    let headers = new HttpHeaders();
-    let token = localStorage.getItem('token');
-    headers = headers.set("authorization", token!);
-    return this.http.put(this.url + 'favor', favoritesUpdate, {headers});
-  }
-
-  deleteJob(jobId?: string) {
-    let headers = new HttpHeaders();
-    let token = localStorage.getItem('token');
-    headers = headers.set("authorization", token!);
-    return this.http.delete(this.url + jobId ,{headers});
-  }
+    deleteJob(jobId?: string) {
+        const headers = this.createHeaders();
+        return this.http.delete(this.url + jobId, { headers });
+    }
 }

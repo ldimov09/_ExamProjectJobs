@@ -25,23 +25,9 @@ interface IGetUserResponse {
 export class UserService {
 
     private url: string = 'http://localhost:3000/api/auth/';
-    //users!:IUser[];
     constructor(private http: HttpClient) {
-        //this.serviceGetUsers();
-        //console.log("omg");
-    }
 
-    /*
-    serviceGetUsers(){
-        this.getUsers().subscribe({
-            next: (response) => {
-                this.users = response.result;
-            },
-            error: (error) => {
-            }
-        })
     }
-    */
 
     getUsers() {
         return this.http.get<IGetUsersResponse>(this.url + 'users');
@@ -53,10 +39,6 @@ export class UserService {
 
     createUser(user: IUser) {
         return this.http.post<ICreateUsersResponse>(this.url + 'register', user);
-    }
-
-    deleteUser(userId: string) {
-        //return this.http.delete
     }
 
     loginUser(credentials: { userEmail: string, userPassword: string }) {

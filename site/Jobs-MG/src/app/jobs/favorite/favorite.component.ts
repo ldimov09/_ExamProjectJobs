@@ -51,10 +51,9 @@ export class FavoriteComponent implements OnInit {
         }
         this.jobService.updateUserFavorites(payload).subscribe(
             {
-                next: (response) => {
-                    this.getUserById(this.service.user._id);
-                    
-                    console.log('fine')
+                next: (response: any) => {
+                    this.changeEvent.emit(response.result);
+                    this.user = response.result;
                 },
                 error: (error) => {
 
@@ -68,7 +67,6 @@ export class FavoriteComponent implements OnInit {
             next: (response) => {
                 this.user = response.result;
                 this.loggedUserId = this.user._id!;
-                this.changeEvent.emit(this.user);
             },
             error: (error) => {
 
